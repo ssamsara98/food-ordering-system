@@ -20,7 +20,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
         validateRestaurant(restaurant);
-        setProductInformation(order, restaurant);
+        setOrderProductInformation(order, restaurant);
         order.validateOrder();
         order.initializeOrder();
         log.info("Order with id: {} is initiated", order.getId().getValue());
@@ -55,11 +55,11 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     private void validateRestaurant(Restaurant restaurant) {
         if (!restaurant.isActive()) {
-            throw new OrderDomainException(String.format("Restaurant with id: %s is currently no active!", restaurant.getId().getValue()));
+            throw new OrderDomainException(String.format("Restaurant with id %s is currently not active!", restaurant.getId().getValue()));
         }
     }
 
-    private void setProductInformation(Order order, Restaurant restaurant) {
+    private void setOrderProductInformation(Order order, Restaurant restaurant) {
         order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
             Product currentProduct = orderItem.getProduct();
             if (currentProduct.equals(restaurantProduct)) {
