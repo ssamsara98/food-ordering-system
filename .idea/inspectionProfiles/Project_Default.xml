@@ -26,6 +26,25 @@
           <option value="order-messaging" />
           <option value="order-messaging" />
           <option value="order-messaging" />
+          <option value="kafka-model" />
+          <option value="kafka-model" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-config-data" />
+          <option value="kafka-config-data" />
+          <option value="kafka-config-data" />
+          <option value="kafka-config-data" />
+          <option value="kafka-config-data" />
+          <option value="kafka-config-data" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-producer" />
+          <option value="kafka-consumer" />
+          <option value="kafka-consumer" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -51,10 +70,48 @@
           <option value="org.springframework:spring-expression:5.3.19" />
           <option value="org.springframework:spring-web:5.3.19" />
           <option value="org.yaml:snakeyaml:1.29" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.13.2.1" />
+          <option value="org.apache.avro:avro:1.11.0" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.13.2.1" />
+          <option value="com.google.guava:guava:30.1.1-jre" />
+          <option value="org.apache.avro:avro:1.11.0" />
+          <option value="org.apache.kafka:kafka-clients:3.0.1" />
+          <option value="org.springframework.kafka:spring-kafka:2.8.2" />
+          <option value="org.springframework.boot:spring-boot-autoconfigure:2.6.7" />
+          <option value="org.springframework.boot:spring-boot:2.6.7" />
+          <option value="org.springframework:spring-beans:5.3.19" />
+          <option value="org.springframework:spring-core:5.3.19" />
+          <option value="org.springframework:spring-expression:5.3.19" />
+          <option value="org.yaml:snakeyaml:1.29" />
+          <option value="org.springframework.boot:spring-boot-autoconfigure:2.6.7" />
+          <option value="org.springframework.boot:spring-boot:2.6.7" />
+          <option value="org.springframework:spring-core:5.3.19" />
+          <option value="org.yaml:snakeyaml:1.29" />
+          <option value="org.springframework.kafka:spring-kafka:2.8.2" />
+          <option value="org.apache.avro:avro:1.11.0" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />

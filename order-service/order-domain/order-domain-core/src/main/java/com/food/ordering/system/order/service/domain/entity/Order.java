@@ -21,6 +21,8 @@ public class Order extends AggregateRoot<OrderId> {
     private OrderStatus orderStatus;
     private List<String> failureMessages;
 
+    public static final String FAILURE_MESSAGE_DELIMITER = ",";
+
     public void initializeOrder() {
         setId(new OrderId(UUID.randomUUID()));
         trackingId = new TrackingId(UUID.randomUUID());
@@ -66,7 +68,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void updateFailureMessages(List<String> failureMessages) {
         if (this.failureMessages != null && failureMessages != null) {
-            this.failureMessages.addAll(failureMessages.stream().filter(messages -> !messages.isEmpty()).toList());
+            this.failureMessages.addAll(failureMessages.stream().filter(message -> !message.isEmpty()).toList());
         }
         if (this.failureMessages == null) {
             this.failureMessages = failureMessages;
@@ -75,7 +77,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void validateInitialOrder() {
         if (orderStatus != null || getId() != null) {
-            throw new OrderDomainException("Order is not in correct state for initialization");
+            throw new OrderDomainException("Order is not in correct state for initialization!");
         }
     }
 
@@ -87,7 +89,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void validateItemsPrice() {
         Money orderItemsTotal = items.stream().map(orderItem -> {
-            validateItemsPrice(orderItem);
+            validateItemPrice(orderItem);
             return orderItem.getSubTotal();
         }).reduce(Money.ZERO, Money::add);
 
@@ -96,7 +98,7 @@ public class Order extends AggregateRoot<OrderId> {
         }
     }
 
-    private void validateItemsPrice(OrderItem orderItem) {
+    private void validateItemPrice(OrderItem orderItem) {
         if (!orderItem.isPriceValid()) {
             throw new OrderDomainException(String.format("Order item price: %s is not valid for product %s", orderItem.getPrice().getAmount(), orderItem.getProduct().getId().getValue()));
         }
