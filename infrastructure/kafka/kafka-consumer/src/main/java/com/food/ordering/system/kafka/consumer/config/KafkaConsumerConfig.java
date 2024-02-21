@@ -1,11 +1,11 @@
 package com.food.ordering.system.kafka.consumer.config;
 
-
 import com.food.ordering.system.kafka.config.data.KafkaConfigData;
 import com.food.ordering.system.kafka.config.data.KafkaConsumerConfigData;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
@@ -16,11 +16,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KafkaConsumerConfig<K extends Serializable, V extends SpecificRecordBase>  {
+@Configuration
+public class KafkaConsumerConfig<K extends Serializable, V extends SpecificRecordBase> {
+
     private final KafkaConfigData kafkaConfigData;
     private final KafkaConsumerConfigData kafkaConsumerConfigData;
 
-    public KafkaConsumerConfig(KafkaConfigData kafkaConfigData, KafkaConsumerConfigData kafkaConsumerConfigData) {
+    public KafkaConsumerConfig(KafkaConfigData kafkaConfigData,
+                               KafkaConsumerConfigData kafkaConsumerConfigData) {
         this.kafkaConfigData = kafkaConfigData;
         this.kafkaConsumerConfigData = kafkaConsumerConfigData;
     }

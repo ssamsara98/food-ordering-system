@@ -12,9 +12,11 @@ import org.springframework.validation.annotation.Validated;
 public class RestaurantApprovalResponseMessageListenerImpl implements RestaurantApprovalResponseMessageListener {
     @Override
     public void orderApproved(RestaurantApprovalResponse restaurantApprovalResponse) {
+
     }
 
     @Override
     public void orderRejected(RestaurantApprovalResponse restaurantApprovalResponse) {
+
     }
 }

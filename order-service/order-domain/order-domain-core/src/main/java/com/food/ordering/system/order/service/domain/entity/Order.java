@@ -44,7 +44,7 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     public void approve() {
-        if (orderStatus != OrderStatus.PAID) {
+        if(orderStatus != OrderStatus.PAID) {
             throw new OrderDomainException("Order is not in correct state for approve operation!");
         }
         orderStatus = OrderStatus.APPROVED;
@@ -94,19 +94,21 @@ public class Order extends AggregateRoot<OrderId> {
         }).reduce(Money.ZERO, Money::add);
 
         if (!price.equals(orderItemsTotal)) {
-            throw new OrderDomainException(String.format("Total price: %s is not equal to Order items total: %s!", price.getAmount(), orderItemsTotal.getAmount()));
+            throw new OrderDomainException("Total price: " + price.getAmount()
+                + " is not equal to Order items total: " + orderItemsTotal.getAmount() + "!");
         }
     }
 
     private void validateItemPrice(OrderItem orderItem) {
         if (!orderItem.isPriceValid()) {
-            throw new OrderDomainException(String.format("Order item price: %s is not valid for product %s", orderItem.getPrice().getAmount(), orderItem.getProduct().getId().getValue()));
+            throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
+                    " is not valid for product " + orderItem.getProduct().getId().getValue());
         }
     }
 
     private void initializeOrderItems() {
         long itemId = 1;
-        for (OrderItem orderItem : items) {
+        for (OrderItem orderItem: items) {
             orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId++));
         }
     }

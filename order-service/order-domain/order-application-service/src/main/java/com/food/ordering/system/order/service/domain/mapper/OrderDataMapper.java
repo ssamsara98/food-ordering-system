@@ -18,14 +18,16 @@ import java.util.stream.Collectors;
 
 @Component
 public class OrderDataMapper {
+
     public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
         return Restaurant.builder()
                 .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
                 .products(createOrderCommand.getItems().stream().map(orderItem ->
-                        new Product(new ProductId(orderItem.getProductId()))).collect(Collectors.toList()))
+                        new Product(new ProductId(orderItem.getProductId())))
+                        .collect(Collectors.toList()))
                 .build();
     }
-
+    
     public Order createOrderCommandToOrder(CreateOrderCommand createOrderCommand) {
         return Order.builder()
                 .customerId(new CustomerId(createOrderCommand.getCustomerId()))
@@ -54,16 +56,22 @@ public class OrderDataMapper {
 
     private List<OrderItem> orderItemsToOrderItemEntities(
             List<com.food.ordering.system.order.service.domain.dto.create.OrderItem> orderItems) {
-        return orderItems.stream().map(orderItem ->
-                OrderItem.builder()
-                        .product(new Product(new ProductId(orderItem.getProductId())))
-                        .price(new Money(orderItem.getPrice()))
-                        .quantity(orderItem.getQuantity())
-                        .subTotal(new Money(orderItem.getSubTotal()))
-                        .build()).collect(Collectors.toList());
+        return orderItems.stream()
+                .map(orderItem ->
+                        OrderItem.builder()
+                                .product(new Product(new ProductId(orderItem.getProductId())))
+                                .price(new Money(orderItem.getPrice()))
+                                .quantity(orderItem.getQuantity())
+                                .subTotal(new Money(orderItem.getSubTotal()))
+                                .build()).collect(Collectors.toList());
     }
 
     private StreetAddress orderAddressToStreetAddress(OrderAddress orderAddress) {
-        return new StreetAddress(UUID.randomUUID(), orderAddress.getStreet(), orderAddress.getPostalCode(), orderAddress.getCity());
+        return new StreetAddress(
+                UUID.randomUUID(),
+                orderAddress.getStreet(),
+                orderAddress.getPostalCode(),
+                orderAddress.getCity()
+        );
     }
 }

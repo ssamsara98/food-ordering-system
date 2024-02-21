@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(scanBasePackages = "com.food.ordering.system")
 public class OrderTestConfiguration {
+
     @Bean
     public OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher() {
         return Mockito.mock(OrderCreatedPaymentRequestMessagePublisher.class);
@@ -46,4 +47,5 @@ public class OrderTestConfiguration {
     public OrderDomainService orderDomainService() {
         return new OrderDomainServiceImpl();
     }
+
 }
